@@ -61,14 +61,17 @@
             name: fnameVal,
           };
           let local = JSON.parse(localStorage.getItem("user"));
-
-          //pushing the object inside the array
+          if(local){
+             //pushing the object inside the array
           user.push(...local);
           user.push(obj);
-
-          //setting the array in local storage
           localStorage.removeItem("user");
           localStorage.setItem("user", JSON.stringify(user));
+          }
+          else{
+          user.push(obj);
+          localStorage.setItem("user", JSON.stringify(user));
+          }
 
           //navigating to login page
           window.location.href = "./login.html";
